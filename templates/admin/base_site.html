@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_modify %}
+{% load admin_urls %}
+
+{# {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/cmc.css" %}" />{% endblock %} #}
+
+{% block extrahead %}
+	<link rel="stylesheet" type="text/css" href="{% static "admin/css/cmc.css" %}">
+{% endblock %}
+
+{% block nav-global %}
+<div id="branding">
+	<h1 class="float-left"><a href="{% url 'admin:index' %}">认证中心</a></h1>
+	<h1 class="float-left"><a href="{% url 'cmdb:index' %}">管理中心</a></h1>
+	<h1 class="float-left"><a href="{% url 'logs:index' %}">日志中心</a></h1>
+</div>
+{% endblock %}
