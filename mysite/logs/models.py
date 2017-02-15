@@ -14,6 +14,7 @@ from mysite.cmdb.models import ControlCpUrl
 class Logs(BaseModel):
 	user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=True, verbose_name='用户')
 	control_cp_url = models.ForeignKey(ControlCpUrl, on_delete=models.SET_DEFAULT, default=True, verbose_name='URL使用')
+	action = models.CharField('动作', max_length=20)
 	remark = models.TextField('备注', max_length=1000)
 
 	class Meta:
