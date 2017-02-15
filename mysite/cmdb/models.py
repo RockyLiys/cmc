@@ -17,6 +17,7 @@ class ControlCp(BaseModel):
 		verbose_name_plural = verbose_name	
 
 class ControlCpUrl(BaseModel):
+	host = models.CharField('HOST', max_length=100)
 	in_url = models.CharField('接入URI', max_length=255)
 	out_url = models.CharField('接出URI', max_length=255)
 	remark = models.TextField('备注', max_length=1000)
