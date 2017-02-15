@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    
     'mysite.cmdb',
     'mysite.logs',
 
@@ -146,6 +147,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), STATIC_URL),
+)
 from rest_framework.settings import DEFAULTS
 
 

@@ -18,5 +18,5 @@ class Logs(BaseModel):
 
 	class Meta:
 		db_table = 'cmc_logs'
-		verbose_name = '日志管理中心'
+		verbose_name = '日志'
 		verbose_name_plural = verbose_name

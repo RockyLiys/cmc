@@ -18,6 +18,9 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework.authtoken.views import obtain_auth_token
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 from cmc import settings, routers
 from .views import UserViewSet, GroupViewSet
 
@@ -44,8 +47,7 @@ urlpatterns += [
 
     url(r'^logs/', include('mysite.logs.urls', namespace='logs')),
     url(r'^cmdb/', include('mysite.cmdb.urls', namespace='cmdb')),
-
-
+    url(r'^auth/', include('mysite.auth.urls', namespace='auth')),
 
 ]
 
@@ -54,3 +56,5 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+
+urlpatterns += staticfiles_urlpatterns()
