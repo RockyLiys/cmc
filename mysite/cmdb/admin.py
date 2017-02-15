@@ -8,13 +8,10 @@ from django.contrib import admin
 
 from .models import ControlCp, ControlCpUrl
 
+@admin.register(ControlCp)
 class ControlCpAdmin(admin.ModelAdmin):
 	pass
 
+@admin.register(ControlCpUrl)
 class ControlCpUrlAdmin(admin.ModelAdmin):
 	pass
-
-admin.site.register(ControlCp, ControlCpAdmin)
-admin.site.register(ControlCpUrl, ControlCpUrlAdmin)
-
-

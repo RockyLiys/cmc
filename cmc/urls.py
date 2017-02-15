@@ -32,7 +32,9 @@ router.register(r'groups', GroupViewSet)
 admin.site.site_title = settings.ADMIN_NAME
 admin.site.site_header = settings.ADMIN_NAME
 
-admin.site.site_url = settings.SITE_URL
+# admin.site.site_url = settings.SITE_URL
+
+print(admin.site.urls)
 
 urlpatterns = [
     # Examples:
@@ -44,11 +46,6 @@ urlpatterns += [
     url(r'^', include(router.urls)),
     url(r'^api-token-auth/', obtain_auth_token),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-
-    url(r'^logs/', include('mysite.logs.urls', namespace='logs')),
-    url(r'^cmdb/', include('mysite.cmdb.urls', namespace='cmdb')),
-    url(r'^auth/', include('mysite.auth.urls', namespace='auth')),
-
 ]
 
 if settings.DEBUG:
@@ -57,4 +54,3 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
-urlpatterns += staticfiles_urlpatterns()

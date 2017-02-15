@@ -6,9 +6,5 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class CmdbConfig(AppConfig):
-    name = 'cmdb'
+    name = 'mysite.cmdb'
     verbose_name = u'配置管理中心'
-
-    def ready(self):
-        super(CmdbConfig, self).ready()
-        self.module.autodiscover()

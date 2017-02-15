@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     
-    'mysite.cmdb',
-    'mysite.logs',
+    'mysite.logs.apps.LogsConfig',
+    'mysite.cmdb.apps.CmdbConfig',
+
 
 ]
 
@@ -136,20 +137,21 @@ USE_L10N = True
 USE_TZ = True
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'cmc_static'),
+)
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(os.path.dirname(__file__), STATIC_URL),
-)
+
+
 from rest_framework.settings import DEFAULTS
 
 
@@ -173,5 +175,37 @@ DEFAULTS['DEFAULT_PARSER_CLASSES'] = tuple(list(DEFAULTS['DEFAULT_PARSER_CLASSES
 
 
 ## log
-
-
+LOG_DIR = os.path.join(BASE_DIR, 'tmp')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(LOG_DIR, 'cmc.log'),
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'] if DEBUG else ['file'],
+            'level': 'DEBUG' if DEBUG else 'INFO',
+            'propagate': True,
+        },
+    },
+}
+# log end

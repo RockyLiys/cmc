@@ -1,19 +1,17 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_static admin_modify %}
+{% load i18n %}
 {% load admin_urls %} 
 {% load staticfiles %} 
 
-{# {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/cmc.css" %}" />{% endblock %} #}
-
-{% block extrahead %}
+{% block extrastyle %}
 	<link rel="stylesheet" type="text/css" href="{% static "css/cmc.css" %}">
 {% endblock %}
 
 {% block nav-global %}
 <div id="branding">
-	<h1 class="float-left"><a href="{% url 'admin:index' %}">{% trans "首页" %}</a></h1>
-	<h1 class="float-left"><a href="/admin/auth">{% trans "认证中心" %}</a></h1>
-	<h1 class="float-left"><a href="/admin/cmdb">{% trans "管理中心" %}</a></h1>
-	<h1 class="float-left"><a href="/admin/logs">{% trans "日志中心" %}</a></h1>
+	<h2 class="float-left cmc_h_center"><a href="{% url 'admin:index' %}">{% trans "首页" %}</a></h2>
+	<h2 class="float-left cmc_h_center"><a href="/admin/auth">{% trans "认证授权" %}</a></h2>
+	<h2 class="float-left cmc_h_center"><a href="/admin/cmdb">{% trans "配置管理" %}</a></h2>
+	<h2 class="float-left cmc_h_center"><a href="/admin/logs">{% trans "日志中心" %}</a></h2>
 </div>
 {% endblock %}

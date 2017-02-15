@@ -10,4 +10,4 @@ class DefaultRouter(routers.DefaultRouter):
 		urls = super(DefaultRouter, self).get_urls()
 		print(urls)
 		print('fffffffffffsssssssssssss')
-		return []
+		return urls
