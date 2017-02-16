@@ -3,18 +3,12 @@
 
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.auth.models import User
 
 from common.models import BaseModel
 
 # Create your models here.
 
-class ControlCp(BaseModel):
-	remark = models.TextField('备注', max_length=1000)
-
-	class Meta:
-		db_table = 'cmc_cp'
-		verbose_name = 'CP管理'
-		verbose_name_plural = verbose_name	
 
 class ControlCpUrl(BaseModel):
 	host = models.CharField('HOST', max_length=100)
@@ -22,11 +16,26 @@ class ControlCpUrl(BaseModel):
 	out_url = models.CharField('接出URI', max_length=255)
 	remark = models.TextField('备注', max_length=1000)
 
+	def __str__(self):
+		return '/'.join([self.host, self.in_url, self.out_url])
+
 	class Meta:
 		db_table = 'cmc_cp_url'
 		verbose_name = '配置CP地址'
 		verbose_name_plural = verbose_name
 
 
+class ControlCp(BaseModel	):
+	cp = models.ForeignKey(User, default=True, verbose_name='CP用户')
+	cp_urls = models.ManyToManyField('ControlCpUrl', verbose_name='CP配置地址')
+	remark = models.TextField('备注', max_length=1000)
+
+	def __str__(self):
+		return self.cp.username
+
+	class Meta:
+		db_table = 'cmc_cp'
+		verbose_name = 'CP管理'
+		verbose_name_plural = verbose_name	
 
 

@@ -9,4 +9,4 @@ from django.utils.translation import ugettext_lazy as _
 
 class AuthConfig(AppConfig):
     name = 'cmc_auth'
-    verbose_name = _'权限中心'
+    verbose_name = '权限中心'

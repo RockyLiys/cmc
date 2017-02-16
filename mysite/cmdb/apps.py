@@ -7,4 +7,4 @@ from django.utils.translation import ugettext_lazy as _
 
 class CmdbConfig(AppConfig):
     name = 'mysite.cmdb'
-    verbose_name = u'配置管理中心'
+    verbose_name = '配置管理中心'
