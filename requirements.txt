@@ -18,7 +18,7 @@ oauthlib==1.0.3
 PyMySQL==0.7.9
 pytz==2016.7
 requests==2.12.1
-rocky==0.0.1
+git+git://github.com/RockyLiys/pip_test
 simplejson==3.10.0
 six==1.10.0
 uritemplate==3.0.0
