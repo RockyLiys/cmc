@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     
     'mysite.logs.apps.LogsConfig',
     'mysite.cmdb.apps.CmdbConfig',
+    'api',
 
 
 ]
@@ -90,12 +91,12 @@ WSGI_APPLICATION = 'cmc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',                                                                                             
-        'NAME': 'cmc',                                                                                                                 
-        'USER': 'cmcuser',                                                                                                             
-        'PASSWORD': 'cmcpasswd',                                                                                                        
-        'HOST': '127.0.0.1',                                                                                                         
-        'PORT': '3306',   
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cmc',
+        'USER': 'cmcuser',
+        'PASSWORD': 'cmcpasswd',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     },
     'developer': {
         'ENGINE': 'django.db.backends.sqlite3',

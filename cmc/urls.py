@@ -21,20 +21,13 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from cmc import settings, routers
-from .views import UserViewSet, GroupViewSet
-
-# Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
+from cmc import settings
+from cmc.routers import router
 
 admin.site.site_title = settings.ADMIN_NAME
 admin.site.site_header = settings.ADMIN_NAME
 
 # admin.site.site_url = settings.SITE_URL
-
-print(admin.site.urls)
 
 urlpatterns = [
     # Examples:
@@ -43,7 +36,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^api-token-auth/', obtain_auth_token),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
@@ -52,5 +45,9 @@ if settings.DEBUG:
     from django.conf.urls.static import static
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+print("cmc_urls.................")
+for url in urlpatterns:
+    print(url)
 
 

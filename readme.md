@@ -2,10 +2,9 @@ project is cmc
 
 cmc is nice .
 
-
->git fetch --all
-
-git reset --hard origin/master
-
-git pull origin master
+-----
+## fix file conflit 
+>git fetch --all<br>
+git reset --hard origin/master<br>
+git pull origin master<br>
 
