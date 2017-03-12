@@ -31,7 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 ADMIN_NAME = 'CMC管理平台'
-SITE_URL = '/admin'
+SITE_URL = '/api'
 
 LOGIN_REDIRECT_URL = SITE_URL
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'rest_framework.authtoken',
     
@@ -152,7 +153,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 
-
 from rest_framework.settings import DEFAULTS
 
 
@@ -175,7 +175,7 @@ DEFAULTS['DEFAULT_RENDERER_CLASSES'] = tuple(list(DEFAULTS['DEFAULT_RENDERER_CLA
 DEFAULTS['DEFAULT_PARSER_CLASSES'] = tuple(list(DEFAULTS['DEFAULT_PARSER_CLASSES']) + ['rest_framework_xml.parsers.XMLParser'])
 
 
-## log
+# log
 LOG_DIR = os.path.join(BASE_DIR, 'tmp')
 LOGGING = {
     'version': 1,

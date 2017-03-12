@@ -16,6 +16,8 @@ from rest_framework.reverse import reverse
 from rest_framework.schemas import SchemaGenerator
 from rest_framework.settings import api_settings
 from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework.urls import urlpatterns as rf_urlpatterns
+
 
 
 class DefaultRouter(routers.DefaultRouter):
@@ -30,15 +32,17 @@ class DefaultRouter(routers.DefaultRouter):
         list_name = self.routes[0].name
         for prefix, viewset, basename in self.registry:
             api_root_dict[prefix] = list_name.format(basename=basename)
-        print('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF')
+
+        print('api_url.............')
         class APIRootView(views.APIView):
-            _ignore_model_permissions = True
+            _ignore_model_permissions = False
             exclude_from_schema = True
 
             def get(self, request, *args, **kwargs):
                 # Return a plain {"name": "hyperlink"} response.
                 ret = OrderedDict()
                 namespace = request.resolver_match.namespace
+                print(namespace)
                 for key, url_name in api_root_dict.items():
                     if namespace:
                         url_name = namespace + ':' + url_name
@@ -63,11 +67,9 @@ class DefaultRouter(routers.DefaultRouter):
         self.include_root_view = True
         self.include_format_suffixes = True
         urls = super(DefaultRouter, self).get_urls()
-        print('fffffffffffsssssssssssss')
-        print(dir(self))
-        print(self.root_view_name)
-        root_url = url(r'^$', self.get_api_root_view(api_urls=urls), name=self.root_view_name)
-        urls.append(root_url)
+        # root_url = url(r'^$', self.get_api_root_view(api_urls=urls), name=self.root_view_name)
+        # urls.append(root_url)
+        urls.extend(rf_urlpatterns)
         return urls
 
 router = DefaultRouter()

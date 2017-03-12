@@ -27,7 +27,7 @@ from cmc.routers import router
 admin.site.site_title = settings.ADMIN_NAME
 admin.site.site_header = settings.ADMIN_NAME
 
-# admin.site.site_url = settings.SITE_URL
+admin.site.site_url = settings.SITE_URL
 
 urlpatterns = [
     # Examples:
@@ -36,9 +36,9 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^api/', include(router.urls)),
-    url(r'^api-token-auth/', obtain_auth_token),
+    url(r'^api/', include(router.urls, namespace='api')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # url(r'^api-token-auth/', obtain_auth_token),
 ]
 
 if settings.DEBUG:
