@@ -17,12 +17,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from rest_framework.authtoken.views import obtain_auth_token
-
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from cmc import settings
 from cmc.routers import router
+from . import views
 
 admin.site.site_title = settings.ADMIN_NAME
 admin.site.site_header = settings.ADMIN_NAME
@@ -31,15 +29,15 @@ admin.site.site_url = settings.SITE_URL
 
 urlpatterns = [
     # Examples:
-    # url(r'^$', 'cmc.views.home', name='home'),
+    url(r'^$', views.home, name='home'),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
 urlpatterns += [
     url(r'^api/', include(router.urls, namespace='api')),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # url(r'^api-token-auth/', obtain_auth_token),
+    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
+
 
 if settings.DEBUG:
     from django.conf.urls.static import static

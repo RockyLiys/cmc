@@ -67,15 +67,13 @@ class DefaultRouter(routers.DefaultRouter):
         self.include_root_view = True
         self.include_format_suffixes = True
         urls = super(DefaultRouter, self).get_urls()
-        # root_url = url(r'^$', self.get_api_root_view(api_urls=urls), name=self.root_view_name)
-        # urls.append(root_url)
         urls.extend(rf_urlpatterns)
         return urls
 
 router = DefaultRouter()
 
-# router.register(r'users', UserViewSet)
-# router.register(r'groups', GroupViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
 
 for url in router.urls:
     print(url)
