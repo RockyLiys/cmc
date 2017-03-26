@@ -1,5 +1,5 @@
 # -*- coding: utf-8  -*-
-#!/usr/local/bin/python
+# !/usr/local/bin/python
 """
 Django settings for cmc project.
 
@@ -17,7 +17,6 @@ import rest_framework_xml
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -47,11 +46,10 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    
+
     'mysite.logs.apps.LogsConfig',
     'mysite.cmdb.apps.CmdbConfig',
     'api',
-
 
 ]
 
@@ -86,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cmc.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -104,7 +101,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -124,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -138,7 +133,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATICFILES_DIRS = (
@@ -148,13 +142,10 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-
 from rest_framework.settings import DEFAULTS
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -169,11 +160,11 @@ REST_FRAMEWORK = {
 
 DEFAULTS['VERSION_PARAM'] = 'v1.0'
 
-
 # xml
-DEFAULTS['DEFAULT_RENDERER_CLASSES'] = tuple(list(DEFAULTS['DEFAULT_RENDERER_CLASSES']) + ['rest_framework_xml.renderers.XMLRenderer'])
-DEFAULTS['DEFAULT_PARSER_CLASSES'] = tuple(list(DEFAULTS['DEFAULT_PARSER_CLASSES']) + ['rest_framework_xml.parsers.XMLParser'])
-
+DEFAULTS['DEFAULT_RENDERER_CLASSES'] = tuple(
+    list(DEFAULTS['DEFAULT_RENDERER_CLASSES']) + ['rest_framework_xml.renderers.XMLRenderer'])
+DEFAULTS['DEFAULT_PARSER_CLASSES'] = tuple(
+    list(DEFAULTS['DEFAULT_PARSER_CLASSES']) + ['rest_framework_xml.parsers.XMLParser'])
 
 # log
 LOG_DIR = os.path.join(BASE_DIR, 'tmp')
@@ -205,6 +196,11 @@ LOGGING = {
         'django': {
             'handlers': ['console'] if DEBUG else ['file'],
             'level': 'DEBUG' if DEBUG else 'INFO',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['file'],
+            'level': 'INFO',
             'propagate': True,
         },
     },

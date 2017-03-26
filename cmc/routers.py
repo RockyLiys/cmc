@@ -1,5 +1,5 @@
 # -*- coding: utf-8  -*-
-#!/usr/local/bin/python
+# !/usr/local/bin/python
 from __future__ import unicode_literals
 
 from rest_framework import routers
@@ -19,11 +19,10 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.urls import urlpatterns as rf_urlpatterns
 
 
-
 class DefaultRouter(routers.DefaultRouter):
     def __init__(self, *args, **kwargs):
         super(DefaultRouter, self).__init__(*args, **kwargs)
-        
+
     def get_api_root_view(self, api_urls=None):
         """
         Return a basic root view.
@@ -34,6 +33,7 @@ class DefaultRouter(routers.DefaultRouter):
             api_root_dict[prefix] = list_name.format(basename=basename)
 
         print('api_url.............')
+
         class APIRootView(views.APIView):
             _ignore_model_permissions = False
             exclude_from_schema = True
@@ -41,6 +41,8 @@ class DefaultRouter(routers.DefaultRouter):
             def get(self, request, *args, **kwargs):
                 # Return a plain {"name": "hyperlink"} response.
                 ret = OrderedDict()
+                print(dir(request))
+                print(request.user)
                 namespace = request.resolver_match.namespace
                 print(namespace)
                 for key, url_name in api_root_dict.items():
@@ -70,6 +72,7 @@ class DefaultRouter(routers.DefaultRouter):
         urls.extend(rf_urlpatterns)
         return urls
 
+
 router = DefaultRouter()
 
 router.register(r'users', UserViewSet)
@@ -77,4 +80,3 @@ router.register(r'groups', GroupViewSet)
 
 for url in router.urls:
     print(url)
-
