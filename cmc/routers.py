@@ -6,7 +6,7 @@ from rest_framework import routers
 from django.conf.urls import url
 from collections import OrderedDict, namedtuple
 
-from api.views import UserViewSet, GroupViewSet, ControlCpViewSet
+from api.views import UserViewSet, GroupViewSet, ControlCpUrlViewSet
 
 from rest_framework import exceptions, renderers, views
 from rest_framework.compat import NoReverseMatch
@@ -77,7 +77,7 @@ router = DefaultRouter()
 
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
-router.register(r'cps', ControlCpViewSet)
+router.register(r'cpurls', ControlCpUrlViewSet)
 
 
 print('api_url.............')

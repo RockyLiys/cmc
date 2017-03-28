@@ -11,7 +11,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'is_staff')
+        fields = ('url', 'username', 'email', 'is_staff', 'date_joined')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -38,16 +38,17 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
-class ControlCpSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name="api:controlcp-detail")
+class ControlCpUrlSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="api:controlcpurl-detail")
 
     class Meta:
-        model = ControlCp
-        fields = ('url','cp',)
+        model = ControlCpUrl
+        fields = ('url','host','in_url', 'out_url', 'create_time')
 
-class ControlCpViewSet(viewsets.ModelViewSet):
+class ControlCpUrlViewSet(viewsets.ModelViewSet):
     """
-    允许查看
+    允许查看ControlCpUrl的 API endpoint
+
     """
-    queryset = ControlCp.objects.all()
-    serializer_class = ControlCpSerializer
+    queryset = ControlCpUrl.objects.all()
+    serializer_class = ControlCpUrlSerializer
