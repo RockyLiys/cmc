@@ -5,12 +5,16 @@ from rest_framework import serializers, viewsets
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="api:user-detail")
+
     class Meta:
         model = User
         fields = ('url', 'username', 'email', 'is_staff')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="api:group-detail")
+    
     class Meta:
         model = Group
         fields = ('url', 'name')

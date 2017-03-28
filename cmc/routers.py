@@ -65,7 +65,7 @@ class DefaultRouter(routers.DefaultRouter):
         return APIRootView.as_view()
 
     def get_urls(self):
-        self.root_view_name = "cmc_api"
+        self.root_view_name = "cmc_api_root"
         self.include_root_view = True
         self.include_format_suffixes = True
         urls = super(DefaultRouter, self).get_urls()
@@ -77,6 +77,7 @@ router = DefaultRouter()
 
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+
 
 print('api_url.............')
 for url in router.urls:
