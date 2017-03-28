@@ -32,7 +32,7 @@ class DefaultRouter(routers.DefaultRouter):
         for prefix, viewset, basename in self.registry:
             api_root_dict[prefix] = list_name.format(basename=basename)
 
-        print('api_url.............')
+
 
         class APIRootView(views.APIView):
             _ignore_model_permissions = False
@@ -78,5 +78,6 @@ router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 
+print('api_url.............')
 for url in router.urls:
     print(url)

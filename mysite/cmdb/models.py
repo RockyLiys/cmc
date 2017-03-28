@@ -37,5 +37,5 @@ class ControlCp(BaseModel):
 
     class Meta:
         db_table = 'cmc_cp'
-        verbose_name = 'CP管理'
+        verbose_name = 'CP'
         verbose_name_plural = verbose_name
