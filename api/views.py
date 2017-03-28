@@ -3,6 +3,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers, viewsets
 
+from mysite.cmdb.models import ControlCp, ControlCpUrl
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name="api:user-detail")
@@ -14,7 +16,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name="api:group-detail")
-    
+
     class Meta:
         model = Group
         fields = ('url', 'name')
@@ -35,3 +37,17 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+class ControlCpSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="api:controlcp-detail")
+
+    class Meta:
+        model = ControlCp
+        fields = ('url','cp',)
+
+class ControlCpViewSet(viewsets.ModelViewSet):
+    """
+    允许查看
+    """
+    queryset = ControlCp.objects.all()
+    serializer_class = ControlCpSerializer
