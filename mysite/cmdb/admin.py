@@ -19,16 +19,15 @@ class ControlCpAdmin(admin.ModelAdmin):
     # inlines = (ControlCpInline,)
 
     empty_value_display = '-empty-'
-    list_display = ('cp', 'cp_urls','create_time', 'update_time', 'remark')
+    list_display = ('cp', 'get_cp_urls','create_time', 'update_time', 'remark')
     search_fields = ('cp__username',)
     fieldsets = (
           (None, {
               'fields': ('cp', 'cp_urls', 'remark')
           }),
     )
-    def cp_urls(self, obj):
-        print(obj)
-        return obj.cp_urls
+    def get_cp_urls(self, obj):
+        return "\n".join([p.host for p in obj.cp_urls.all()])
 
 
 @admin.register(ControlCpUrl)
