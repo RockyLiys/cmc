@@ -145,26 +145,38 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-from rest_framework.settings import DEFAULTS
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': [
+    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAdminUser',
-    ],
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_xml.renderers.XMLRenderer',
+        'common.utils.BrowsableAPIRendererWithoutForms',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework_xml.parsers.XMLParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
     'PAGE_SIZE': 10,
+    'VERSION_PARAM': 'v1.0',
 }
 
-DEFAULTS['VERSION_PARAM'] = 'v1.0'
+# DEFAULTS['VERSION_PARAM'] = 'v1.0'
 
 # xml
-DEFAULTS['DEFAULT_RENDERER_CLASSES'] = tuple(
-    list(DEFAULTS['DEFAULT_RENDERER_CLASSES']) + ['rest_framework_xml.renderers.XMLRenderer'])
-DEFAULTS['DEFAULT_PARSER_CLASSES'] = tuple(
-    list(DEFAULTS['DEFAULT_PARSER_CLASSES']) + ['rest_framework_xml.parsers.XMLParser'])
+# DEFAULTS['DEFAULT_RENDERER_CLASSES'] = tuple(
+#     list(DEFAULTS['DEFAULT_RENDERER_CLASSES']) + ['rest_framework_xml.renderers.XMLRenderer'])
+# DEFAULTS['DEFAULT_PARSER_CLASSES'] = tuple(
+#     list(DEFAULTS['DEFAULT_PARSER_CLASSES']) + ['rest_framework_xml.parsers.XMLParser'])
 
 # log
 LOG_DIR = os.path.join(BASE_DIR, 'tmp')
